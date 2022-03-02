@@ -1,11 +1,10 @@
-from pydoc import render_doc
-from re import template
-from django.shortcuts import render, redirect
-from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import redirect
+from django.contrib.auth.views import LoginView
 from django.views.generic import FormView
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.urls import reverse, reverse_lazy
+
+from .forms import UserCreationForm
 
 # Create your views here.
 

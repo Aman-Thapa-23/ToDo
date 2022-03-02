@@ -23,7 +23,7 @@
         <input type="text" name="search-area" value="{{search_input}}">
         <input class="button" type="submit" value="Search">
     </form>
-    <a id="add-link" href="{% url 'tasks:task-create' %}">&#43;</a>
+    <a id="add-link" href="{% url 'tasks:task-create' %}">&#43; <small>Add</small></a>
 </div>
 
 <div class="task-items-wrapper">
@@ -32,19 +32,32 @@
         {% if task.complete %}
         <div class="task-title">
             <div class="task-complete-icon"></div>
-            <i><s><a href="{% url 'tasks:task-update' task.id %}">{{task}}</a></s></i>
+            <i><s>{{task}}</s></i>
         </div>
-        <a class="delete-link" href="{% url 'tasks:task-delete' task.id %}">&#215;</a>
+        <div class="row">
+            <div class="col">
+                <a class="edit-link" style="margin-right: 30px;" href="{% url 'tasks:task-update' task.id %}">&#9998;</a>
+                <a class="delete-link" href="{% url 'tasks:task-delete' task.id %}">&#215;</a>
+            </div>
+        </div>
+        
         {% else %}
         <div class="task-title">
             <div class="task-incomplete-icon"></div>
-            <a href="{% url 'tasks:task-update' task.id %}">{{task}}</a>
+            <i>{{task}}</i>
         </div>
-        <a class="delete-link" href="{% url 'tasks:task-delete' task.id %}">&#215;</a>
+        <div class="row">
+            <div class="col">
+                <a class="edit-link" style="margin-right: 30px;" href="{% url 'tasks:task-update' task.id %}">&#9998;</a>
+                <a class="delete-link" href="{% url 'tasks:task-delete' task.id %}">&#215;</a>
+            </div>
+        </div>
         {% endif %}
     </div>
     {% empty %}
-    <h3>No items in list</h3>
+    <div class="card-body">
+        <h3>No items in list</h3>
+    </div>
     {% endfor %}
 </div>
 {% endblock content %}
